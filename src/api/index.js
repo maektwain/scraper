@@ -1,6 +1,6 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-
+import "babel-polyfill";
 const Scraper = require("@jonstuebe/scraper");
 
 
@@ -16,9 +16,9 @@ export default ({ config }) => {
 	});
 
 	api.get('/scrape', async (req, res) => {
-		if (!req.query) {
-			res.json({'message': 'No url provided'});
-		}
+	if (!req.query) {
+		res.json({'message': 'No url provided'});
+	}
 
         const timeout = ms => new Promise(res => setTimeout(res, ms))
 
