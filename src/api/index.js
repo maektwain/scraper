@@ -1,7 +1,7 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
 import "babel-polyfill";
-const Scraper = require("@jonstuebe/scraper");
+const Scraper = require("cashpay-scraper");
 
 
 

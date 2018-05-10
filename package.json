@@ -1,6 +1,6 @@
 {
   "name": "scraping",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Starter project for an ES6 RESTful Express API",
   "main": "dist",
   "scripts": {
@@ -8,7 +8,8 @@
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
     "prestart": "npm run -s build",
-    "test": "eslint src"
+    "test": "eslint src",
+    "preinstall": "apt-get update && apt-get -y install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -28,7 +29,7 @@
     "type": "git",
     "url": "git+https://github.com/developit/express-es6-rest-api.git"
   },
-  "author": "Jason Miller <jason@developit.ca>",
+  "author": "Saransh  Sharma <jason@developit.ca>",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.3",
@@ -37,7 +38,13 @@
     "express": "^4.13.3",
     "morgan": "^1.8.0",
     "resource-router-middleware": "^0.6.0",
-    "@jonstuebe/scraper": "^0.1.4"
+    "cashpay-scraper": "^0.1.7",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^3.1.1",
+    "nodemon": "^1.9.2"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
