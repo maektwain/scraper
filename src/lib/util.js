@@ -8,12 +8,26 @@
  *			collection.find({}, toRes(res));
  *		}
  */
-import {Scraper} from "@jonstuebe/scraper";
+import { scrapeAndDetect } from "cashpay-scraper";
 
 module.exports = {
      scrape :async (url) => {
-        const data = await Scraper(url);
-        return data;
+         return new Promise((resolve, reject) => {
+             scrapeAndDetect(url,(err, data) => {
+                 console.log('Started');
+                 if(!err){
+                     try {
+                         let message = {data};
+
+                         resolve(message)
+                     } catch (errorFromTry) {
+                    reject(errorFromTry)
+                 }
+                     }else{ reject(err)}
+             })
+         });
+
+
     }
 };
 
