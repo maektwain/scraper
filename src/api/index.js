@@ -2,6 +2,7 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import "babel-polyfill";
 const Scraper = require("cashpay-scraper");
+import util from '../lib/util';
 
 
 
@@ -20,38 +21,60 @@ export default ({ config }) => {
 		res.json({'message': 'No url provided'});
 	}
 
-        const timeout = ms => new Promise(res => setTimeout(res, ms))
 
-		// Send to scraping
 
-		async function  convinceME(url) {
-                let scrape = await Scraper.scrapeAndDetect(url);
-                res.json({scrape});
-                }
+
+        const timeout = ms => new Promise(res => setTimeout(res, ms));
+
+        // Send to scraping
+
+        async function  convinceME(url) {
+            try {
+                let scrape = await Scraper.scrapeAndDetect(url).then(value => {
+                    res.json({scrape});
+                }).catch((err =>{
+                    if (err){
+                        res.json(err.message);
+                    }
+                }));
+            }catch (error){
+                console.log(error);
+            }
+
+
+        }
 
         async function delay() {
-			console.log('started');
-			convinceME(req.query.url);
-			await timeout(5000);
-			console.log('finished')
-			
+            console.log('started');
+                convinceME(req.query.url);
+
+            await timeout(5000);
+            console.log('finished')
+
         }
         delay()
 
 
+
+
+
+
+
+
+
+
 	});
 
-    const scraper = async (url) => {
-        (async () => {
-            const data = await Scraper(url);
-            return data;
-        })();
-
-    };
+    // const scraper = async (url) => {
+    //     (async () => {
+    //         const data = await Scraper(url);
+    //         return data;
+    //     })();
+    //
+    // };
 
 
 	return api;
-
 
 
 }
