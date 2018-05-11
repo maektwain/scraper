@@ -31,7 +31,7 @@ export default ({ config }) => {
         async function  convinceME(url) {
             try {
                 let scrape = await Scraper.scrapeAndDetect(url).then(value => {
-                    res.json({scrape});
+                    res.json({value});
                 }).catch((err =>{
                     if (err){
                         res.json(err.message);
