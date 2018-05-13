@@ -58,7 +58,7 @@ export default ({ config }) => {
                 res.json(metadata);
             })().catch(error => {
                 if (error){
-                    res.json(error.message);
+                    res.sendStatus(404);
                 }
             })
 
