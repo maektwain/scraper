@@ -1,7 +1,7 @@
 {
   "name": "scraping",
-  "version": "0.3.1",
-  "description": "Starter project for an ES6 RESTful Express API",
+  "version": "0.3.2",
+  "description": "Cashpay scraper ecommerce sites such as amazong and bestbuy",
   "main": "dist",
   "scripts": {
     "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
@@ -28,7 +28,7 @@
     "type": "git",
     "url": "git+https://github.com/developit/express-es6-rest-api.git"
   },
-  "author": "Saransh  Sharma <jason@developit.ca>",
+  "author": "Saransh  Sharma <saransh@cashpay.solutions>",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.9.0",
@@ -42,6 +42,7 @@
     "express": "^4.13.3",
     "html-metadata": "^1.7.0",
     "metascraper": "^3.10.9",
+    "metascraper-amazon-cashpay": "0.0.1",
     "morgan": "^1.8.0",
     "nodemon": "^1.9.2",
     "resource-router-middleware": "^0.6.0"

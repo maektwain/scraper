@@ -4,8 +4,16 @@ import "babel-polyfill";
 var scrape = require('html-metadata');
 var cheerio = require('cheerio');
 var preq = require('preq'); // Promisified request libra
-import util from '../lib/util';
-var meta = require('metascraper');
+var meta = require('metascraper').load([
+    require('metascraper-amazon-cashpay')(),
+    require('metascraper-author')(),
+    require('metascraper-date')(),
+    require('metascraper-description')(),
+    require('metascraper-image')(),
+    require('metascraper-title')(),
+    require('metascraper-url')()
+
+]);
 const got = require('got');
 
 
@@ -32,20 +40,7 @@ export default ({ config }) => {
 
         // Send to scraping
         async function  convinceME(turl) {
-            // try {
-            //      await preq(url).then(value => {
-            //         let ch = cheerio.load(value);
-            //         return scrape.parseAll(ch).then(metadata =>{
-            //             res.json(metadata);
-            //         })
-            //     }).catch((err =>{
-            //         if (err){
-            //             res.json(err.message);
-            //         }
-            //     }));
-            // }catch (error){
-            //     console.log(error);
-            // }
+
             /**
              * Check the url fof 404 and other messages
              */
@@ -56,6 +51,7 @@ export default ({ config }) => {
                 const metadata = await meta({html, url});
                 console.log(metadata);
                 res.json(metadata);
+
             })().catch(error => {
                 if (error){
                     res.sendStatus(404);
@@ -65,12 +61,14 @@ export default ({ config }) => {
 
         }
 
+
         async function delay() {
             console.log('started');
                 convinceME(req.query.url);
 
             await timeout(5000);
-            console.log('finished')
+            console.log('finished');
+
 
         }
         delay()
